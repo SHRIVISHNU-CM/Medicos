@@ -1,14 +1,24 @@
+import { NavLink, Link } from "react-router-dom"
 function Navbar() {
     return (
         <>
             <navbar className="border flex justify-between items-center p-2 border-blue-800 shadow-2xl">
                 <h1 className="text-2xl text-blue-600">Shrividya's HomeoCare</h1>
                 <div className="flex gap-2">
-                    <a>Home</a>
-                    <a>History</a>
-                    <a>New record</a>
-                </div>
-            </navbar>
+                    <NavLink to="/" className={({ isActive }) => `${isActive ? "text-orange-500" : "text-gray-500"}`
+
+                    }>
+                    Home
+                </NavLink>
+
+                <NavLink to="/history" 
+                className={({isActive})=>`${isActive? "text-orange-500" :"text-gray-500"}`}
+                 >History</NavLink>
+                <NavLink to="/article" className={({isActive})=>`${isActive?"text-orange-500":"text-gray-500"}`}>
+                New Record</NavLink>
+
+            </div>
+        </navbar >
         </>
     )
 }
