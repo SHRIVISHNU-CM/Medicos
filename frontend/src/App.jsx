@@ -1,7 +1,9 @@
+import Navbar from "./Components/Nav";
 function App() {
   return (
     <>
-      <p className="text-3xl">Hello hi</p>
+      <Navbar />
+      
     </>
   )
 }
