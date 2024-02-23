@@ -13,12 +13,37 @@ const signin = (req, res) => {
     }
     res.send("hi")
 }
+const AllDetails = async(req, res) => {
+    try {
+        const Details = await users.find()
+        console.log(Details);
+        res.status(200).json(Details)
+
+    } catch (e) {
+        console.log(e.message)
+        res.status(400).json({ message: "Error in getting data" })
+    }
+}
+const GetDetailsFromData=async(req,res)=>{
+    const{id} = req.params;
+    try{
+        const GetDetails =await users.findOne({patient_id:id})
+        console.log(GetDetails)
+        res.status(200).json(GetDetails)
+
+
+    }catch(e){
+        console.log(e.message)
+
+    }
+
+}
 
 const article = async (req, res) => {
-    const { name, patient_id, history, medicine_given ,location,phoneno} = req.body
+    const { name, patient_id, history, medicine_given, location, phoneno } = req.body
     try {
         const newUser = await users.create({
-            name, patient_id, history, medicine_given,location,phoneno
+            name, patient_id, history, medicine_given, location, phoneno
         });
         console.log(newUser)
         res.status(200).json(newUser)
@@ -69,5 +94,6 @@ module.exports = {
     signin,
     article,
     editarticle,
-    deleteArticle
+    deleteArticle,
+    AllDetails,GetDetailsFromData
 }
