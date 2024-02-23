@@ -1,4 +1,4 @@
-
+const users = require("../config/dataSchema") 
 const signin = (req,res)=>{
     const {name,password} = req.body
     if(!name||!password){
@@ -14,6 +14,30 @@ const signin = (req,res)=>{
     res.send("hi")
 }
 
+const article =async (req,res)=>{
+    const{name,patient_id,history,medicine_given} = req.body
+    try{
+        const newUser = await users.create({
+            name,patient_id,history,medicine_given
+        });
+        console.log(newUser)
+        res.status(200).json(newUser)
+
+    }catch(e){
+        res.status(400).json({
+            message:"error check again"
+        })
+        console.log(e.message)
+    }
+    
+
+}
+const editarticle = (req,res)=>{
+
+}
+
 module.exports = {
-    signin
+    signin,
+    article,
+    editarticle
 }
