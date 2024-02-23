@@ -5,12 +5,12 @@ const {Schema} = mongoose
 const userSchema = new Schema({
     name:{
         type:String,
-        required:true,
+        required:[true,"Enter name"],
         trim:true
     },
     patient_id:{
         type:Number,
-        required:true,
+        required:[true,"Enter patient-id"],
         unique: true,
     },
     history:{
@@ -19,8 +19,15 @@ const userSchema = new Schema({
     },
     medicine_given:{
         type:String
+    },
+    phoneno:{
+        type:Number
+    },
+    location:{
+        type:String
     }
-})
+
+},{timestamps:true})
 
 const userModel = mongoose.model("patientHistory", userSchema)
 module.exports=userModel;
