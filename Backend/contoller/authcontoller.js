@@ -15,10 +15,10 @@ const signin = (req, res) => {
 }
 
 const article = async (req, res) => {
-    const { name, patient_id, history, medicine_given } = req.body
+    const { name, patient_id, history, medicine_given ,location,phoneno} = req.body
     try {
         const newUser = await users.create({
-            name, patient_id, history, medicine_given
+            name, patient_id, history, medicine_given,location,phoneno
         });
         console.log(newUser)
         res.status(200).json(newUser)
