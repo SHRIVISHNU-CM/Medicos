@@ -8,17 +8,17 @@ function Navbar() {
                     <NavLink to="/" className={({ isActive }) => `${isActive ? "text-orange-500" : "text-gray-500"}`
 
                     }>
-                    Home
-                </NavLink>
+                        Home
+                    </NavLink>
 
-                <NavLink to="/history" 
-                className={({isActive})=>`${isActive? "text-orange-500" :"text-gray-500"}`}
-                 >History</NavLink>
-                <NavLink to="/article" className={({isActive})=>`${isActive?"text-orange-500":"text-gray-500"}`}>
-                New Record</NavLink>
+                    <NavLink to="/search"
+                        className={({ isActive }) => `${isActive ? "text-orange-500" : "text-gray-500"}`}
+                    >Search</NavLink>
+                    <NavLink to="/article" className={({ isActive }) => `${isActive ? "text-orange-500" : "text-gray-500"}`}>
+                        New Record</NavLink>
 
-            </div>
-        </navbar >
+                </div>
+            </navbar >
         </>
     )
 }
