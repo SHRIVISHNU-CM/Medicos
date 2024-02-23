@@ -32,8 +32,19 @@ const article =async (req,res)=>{
     
 
 }
-const editarticle = (req,res)=>{
-
+const editarticle =async (req,res)=>{
+    const{id} = req.params
+    try{
+        const editUser= await users.findByIdAndUpdate({_id:id},req.body);
+        const edited = await users.findOne({_id:id})
+        console.log(edited)
+        res.status(200).json(editUser)
+    }catch(e){
+        console.log(e.message)
+        res.status(400).json({
+            message:"Error in updating edit"
+        })
+    }
 }
 
 module.exports = {
