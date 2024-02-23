@@ -6,7 +6,8 @@ import { RouterProvider ,createBrowserRouter} from 'react-router-dom'
 import Layout from './Layout.jsx'
 import Home from './Components/Home.jsx'
 import PatientArticle from './Components/PatientArticle.jsx'
-import About from './Components/About.jsx'
+import Search from './Components/Search.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -17,8 +18,8 @@ const router = createBrowserRouter([
         path:"",
         element:<Home/>
       },{
-        path:"history",
-        element:<search/>
+        path:"search",
+        element:<Search/>
       },
       {
         path:"article",
