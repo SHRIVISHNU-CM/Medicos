@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoIosCall } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa";
-import View from "./ViewButton/View";
 import axios from "axios";
 function Home() {
     const [Data, SetData] = useState([]);
