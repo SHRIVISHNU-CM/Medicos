@@ -3,18 +3,25 @@ import axios from "axios";
 
 function Search() {
     const [Data, SetData] = useState()
-    const [SearchData, SetSearchData] = useState([])
-    const URI = `http://localhost:3001/Medico/${Data}`
+    const [SearchData, SetSearchData] = useState({})
+    // const URI = `http://localhost:3001/Medico/${Data}`
     const handleSearch = async () => {
-        const SearchResult = await axios.get(URI)
-        SetSearchData(SearchResult.data)
+        try {
+            const URI = `http://localhost:3001/Medico/${Data}`;
+            const SearchResult = await axios.get(URI);
+            SetSearchData(SearchResult.data);
+            console.log(SearchResult.data.name);
+        } catch (error) {
+            console.error("Error occurred:", error);
+        }
+    };
 
-        console.log(SearchResult.data)
-
-    }
     useEffect(() => {
-        handleSearch()
-    }, [])
+        // Only fetch data if Data is not empty
+        if (Data) {
+            handleSearch();
+        }
+    }, [Data]);
 
     return (
         <>
@@ -42,10 +49,14 @@ function Search() {
                 <p>{el.medicine_given}</p>
             </div>)
            })} */}
-            <h1>{SearchData.name}</h1>
+            {/* <h1>{SearchData.name}</h1>
             <p>{SearchData.medicine_given}</p>
             <h1>{SearchData.history}</h1>
-            <p>{SearchData.patient_id}</p>
+            <p>{SearchData.patient_id}</p> */}
+            <h1>{SearchData.name}</h1>
+            <h2>{SearchData.patient_id}</h2>
+            <h1>{SearchData.history}</h1>
+            <p>{SearchData.medicine_given}</p>
 
         </>
     )
