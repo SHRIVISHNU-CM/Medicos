@@ -2,12 +2,12 @@ import { useState } from "react";
 import axios from "axios"
 import { useEffect } from "react";
 function PatientArticle() {
-   const [name, SetName] = useState()
-   const [patient_id, SetPatient_id] = useState()
-   const [history, SetCase] = useState()
-   const [phoneno, SetPhone] = useState()
-   const [location, SetLocation] = useState()
-   const [medicine_given, SetMedicine] = useState()
+   const [name, SetName] = useState("")
+   const [patient_id, SetPatient_id] = useState("")
+   const [history, SetCase] = useState("")
+   const [phoneno, SetPhone] = useState("")
+   const [location, SetLocation] = useState("")
+   const [medicine_given, SetMedicine] = useState("")
    const URI = "http://localhost:3001/Medico/newarticle";
    const handleCreate = async () => {
       try {
