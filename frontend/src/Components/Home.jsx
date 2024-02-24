@@ -2,13 +2,15 @@ import { useState, useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoIosCall } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa";
-import axios from "axios"
+import View from "./ViewButton/View";
+import axios from "axios";
 function Home() {
-    const [Data, SetData] = useState([])
+    const [Data, SetData] = useState([]);
+
     const URI = "http://localhost:3001/Medico/"
     const HandleAPI = async () => {
         const details = await axios.get(URI)
-        console.log(details.data[0].history)
+        // console.log(details.data[0].history)
         SetData(details.data)
     }
     useEffect(() => {
