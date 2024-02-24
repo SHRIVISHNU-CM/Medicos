@@ -42,6 +42,13 @@ const GetDetailsFromData=async(req,res)=>{
 const article = async (req, res) => {
     const { name, patient_id, history, medicine_given, location, phoneno } = req.body
     try {
+        if(!name||!patient_id){
+            res.status(400).json({
+                message:"Provide name and patient_id"
+            })
+            return
+        }
+        
         const newUser = await users.create({
             name, patient_id, history, medicine_given, location, phoneno
         });
