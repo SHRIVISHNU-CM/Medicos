@@ -4,13 +4,14 @@ import axios from "axios";
 function Search() {
     const [Data, SetData] = useState()
     const [SearchData, SetSearchData] = useState({})
-    // const URI = `http://localhost:3001/Medico/${Data}`
-    const handleSearch = async () => {
+    const URI = `http://localhost:3001/Medico/${Data}`
+    const handleSearch =  () => {
         try {
-            const URI = `http://localhost:3001/Medico/${Data}`;
-            const SearchResult = await axios.get(URI);
-            SetSearchData(SearchResult.data);
-            console.log(SearchResult.data.name);
+
+             axios.get(URI).then((res)=>{
+                SetSearchData(res.data)
+                console.log(res.data.name)
+             })
         } catch (error) {
             console.error("Error occurred:", error);
         }
@@ -40,23 +41,12 @@ function Search() {
 
                 >Search</button>
             </div>
-            {/* {SearchData.map((el,i)=>{
-            return(<div key={i}>
-                <p>
-                    {el.name}
-                </p>
-                <h1>{el.history}</h1>
-                <p>{el.medicine_given}</p>
-            </div>)
-           })} */}
+            <p>{SearchData.name}</p>
+           <h2>{SearchData.history}</h2>
             {/* <h1>{SearchData.name}</h1>
-            <p>{SearchData.medicine_given}</p>
-            <h1>{SearchData.history}</h1>
-            <p>{SearchData.patient_id}</p> */}
-            <h1>{SearchData.name}</h1>
             <h2>{SearchData.patient_id}</h2>
             <h1>{SearchData.history}</h1>
-            <p>{SearchData.medicine_given}</p>
+            <p>{SearchData.medicine_given}</p> */}
 
         </>
     )
