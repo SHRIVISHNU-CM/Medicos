@@ -18,6 +18,13 @@ function Home() {
     return (
         <>
             <h1 className="text-center font-extrabold text-2xl">Existing Patient's History</h1>
+            <div className="flex gap-2 justify-center m-3">
+                <button className="border px-3 py-2 bg-red-700 text-white rounded-md">Prev</button>
+                <button className="border px-3 py-2 bg-yellow-700 text-white rounded-md">Next</button>
+
+            </div>
+
+
             <div className="flex items-center flex-col w-full h-min">
                 {Data.map((el, i) => {
                     return (
