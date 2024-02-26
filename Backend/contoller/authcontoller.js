@@ -13,10 +13,20 @@ const signin = (req, res) => {
     }
     res.send("hi")
 }
-const AllDetails = async(req, res) => {
+const AllDetails = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = 2;
     try {
+        const count = await users.countDocuments()
+        const totalPages = Math.ceil(count / limit)
+        const skip = (page - 1) * limit
         const Details = await users.find()
+            .skip(skip)
+            .limit(limit)
+
         console.log(Details);
+        res.setHeader("x-total-pages", totalPages)
+        
         res.status(200).json(Details)
 
     } catch (e) {
@@ -24,15 +34,15 @@ const AllDetails = async(req, res) => {
         res.status(400).json({ message: "Error in getting data" })
     }
 }
-const GetDetailsFromData=async(req,res)=>{
-    const{id} = req.params;
-    try{
-        const GetDetails =await users.findOne({patient_id:id})
+const GetDetailsFromData = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const GetDetails = await users.findOne({ patient_id: id })
         console.log(GetDetails)
         res.status(200).json(GetDetails)
 
 
-    }catch(e){
+    } catch (e) {
         console.log(e.message)
 
     }
@@ -42,13 +52,13 @@ const GetDetailsFromData=async(req,res)=>{
 const article = async (req, res) => {
     const { name, patient_id, history, medicine_given, location, phoneno } = req.body
     try {
-        if(!name||!patient_id){
+        if (!name || !patient_id) {
             res.status(400).json({
-                message:"Provide name and patient_id"
+                message: "Provide name and patient_id"
             })
             return
         }
-        
+
         const newUser = await users.create({
             name, patient_id, history, medicine_given, location, phoneno
         });
@@ -102,5 +112,5 @@ module.exports = {
     article,
     editarticle,
     deleteArticle,
-    AllDetails,GetDetailsFromData
+    AllDetails, GetDetailsFromData
 }
