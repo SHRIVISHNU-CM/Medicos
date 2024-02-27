@@ -14,19 +14,10 @@ const signin = (req, res) => {
     res.send("hi")
 }
 const AllDetails = async (req, res) => {
-    const page = parseInt(req.query.page) || 1;
-    const limit = 2;
     try {
-        const count = await users.countDocuments()
-        const totalPages = Math.ceil(count / limit)
-        const skip = (page - 1) * limit
         const Details = await users.find()
-            .skip(skip)
-            .limit(limit)
-
         console.log(Details);
-        res.setHeader("x-total-pages", totalPages)
-        
+
         res.status(200).json(Details)
 
     } catch (e) {
