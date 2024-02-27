@@ -7,6 +7,7 @@ import Layout from './Layout.jsx'
 import Home from './Components/Home.jsx'
 import PatientArticle from './Components/PatientArticle.jsx'
 import Search from './Components/Search.jsx'
+import Edit from './Components/Edit.jsx'
 
 
 
@@ -35,6 +36,8 @@ const router = createBrowserRouter(
     <Route path='/' element={<Layout />}>
       <Route path="" element={<Home />} />
       <Route path='search' element={<Search/>}/>
+        
+      <Route path='edit' element={<Edit/>}/>
       <Route path='article' element={<PatientArticle/>}/>
     </Route>
   )
