@@ -6,24 +6,22 @@ import axios from "axios";
 function Home() {
     const [Data, SetData] = useState([]);
     const [currentPage, SetCurrentPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(0)
+    const [totalPages, setTotalPages] = useState(1)
     const URI = "http://localhost:3001/Medico/"
-    const HandleAPI =  () => {
+    const HandleAPI = () => {
         axios.get(URI)
-        .then((res)=>{
-            console.log(res.data)
-            SetData(res.data)
-            setTotalPages(Math.ceil((res.data.length)/3))
-            console.log(Math.ceil((res.data.length)/3))
-        })
+            .then((res) => {
+                console.log(res.data)
+                SetData(res.data)
+                setTotalPages(Math.ceil((res.data.length)))
+                console.log(Math.ceil((res.data.length)))
+            })
 
     }
     useEffect(() => {
         HandleAPI()
     }, [])
-    const handlePageChange = (newpage) =>{
-        SetCurrentPage(newpage)
-    }
+    
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             SetCurrentPage(currentPage + 1)
@@ -36,79 +34,59 @@ function Home() {
         }
 
     }
-    const itemsPerPage = 2
-    const StartIndex = (currentPage -1) * itemsPerPage;
+    const itemsPerPage = 1
+    const StartIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = StartIndex + itemsPerPage
-    const itmesToDisplay = Data.slice(StartIndex,endIndex)
+    const itmesToDisplay = Data.slice(StartIndex, endIndex)
     return (
         <>
             <h1 className="text-center font-extrabold text-2xl">Existing Patient's History</h1>
             <div className="flex gap-2 justify-center m-3">
-                <button onClick={handlePrevPage} className="border px-3 py-2 bg-red-700 text-white rounded-md">Prev</button>
-                <button onClick={handleNextPage} className="border px-3 py-2 bg-yellow-700 text-white rounded-md">Next</button>
+                <button onClick={handlePrevPage}
+                 className="border px-3 py-2 bg-red-700 text-white rounded-md"
+                 disabled={currentPage === 1}
+                 >Prev</button>
+                <button
+                 onClick={handleNextPage} 
+                 className="border px-3 py-2 bg-yellow-700 text-white rounded-md"
+                 disabled={currentPage === totalPages}
+                 >Next</button>
 
             </div>
-            {
-                itmesToDisplay && itmesToDisplay.length > 0 ? itmesToDisplay.map((el,i)=>{
-                    return <li key={i}>{el.name}</li>
-                }):<></>
-            }
-            {
-
-            }
-
-
             <div className="flex items-center flex-col w-full h-min">
-                {Data.map((el, i) => {
-                    return (
-                        <div className="border w-[400px] h-[100px] my-1" key={i}>
-                            <p className="text-center">{el.name}  </p>
-                            <div className="flex justify-around">
-                                <div className="flex items-center">
-                                    <FaLocationDot />
-                                    <span>{el.location}</span>
+                {
+                    itmesToDisplay && itmesToDisplay.length > 0 ? itmesToDisplay.map((el, i) => {
+                        return (
+                            <div className="border w-[400px] h-[100px] my-1" key={i}>
+                                <p className="text-center">{el.name}  </p>
+                                <div className="flex justify-around">
+                                    <div className="flex items-center">
+                                        <FaLocationDot />
+                                        <span>{el.location}</span>
+                                    </div>
+                                    <div className="flex items-center">
+                                        <IoIosCall />
+                                        <span>{el.phoneno}</span>
+                                    </div>
                                 </div>
-                                <div className="flex items-center">
-                                    <IoIosCall />
-                                    <span>{el.phoneno}</span>
+                                <div className="flex justify-center items-center">
+                                    <button className="border px-3 py-2 rounded-lg bg-green-600 text-white">View </button><FaArrowRight />
                                 </div>
+
+
+
+
+
                             </div>
-                            <div className="flex justify-center items-center">
-                                <button className="border px-3 py-2 rounded-lg bg-green-600 text-white">View </button><FaArrowRight />
-                            </div>
 
-
-
-
-
-                        </div>
-                    )
-                })}
-
-                <div className="border w-[400px] h-[100px]">
-                    <p className="text-center">Shrivishnu CM  </p>
-                    <div className="flex justify-around">
-                        <div className="flex items-center">
-                            <FaLocationDot />
-                            <span>Mysore</span>
-                        </div>
-                        <div className="flex items-center">
-                            <IoIosCall />
-                            <span>1234567890</span>
-                        </div>
-                    </div>
-                    <div className="flex justify-center items-center">
-                        <button className="border px-3 py-2 rounded-lg bg-green-600 text-white">View </button><FaArrowRight />
-                    </div>
-
-
-
-
-
-                </div>
-
+                        )
+                    }) : <></>
+                }
 
             </div>
+
+
+
 
         </>
     )
