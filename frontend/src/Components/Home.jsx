@@ -5,24 +5,57 @@ import { FaArrowRight } from "react-icons/fa";
 import axios from "axios";
 function Home() {
     const [Data, SetData] = useState([]);
-
+    const [currentPage, SetCurrentPage] = useState(1)
+    const [totalPages, setTotalPages] = useState(0)
     const URI = "http://localhost:3001/Medico/"
-    const HandleAPI = async () => {
-        const details = await axios.get(URI)
-        // console.log(details.data[0].history)
-        SetData(details.data)
+    const HandleAPI =  () => {
+        axios.get(URI)
+        .then((res)=>{
+            console.log(res.data)
+            SetData(res.data)
+            setTotalPages(Math.ceil((res.data.length)/3))
+            console.log(Math.ceil((res.data.length)/3))
+        })
+
     }
     useEffect(() => {
         HandleAPI()
     }, [])
+    const handlePageChange = (newpage) =>{
+        SetCurrentPage(newpage)
+    }
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            SetCurrentPage(currentPage + 1)
+        }
+
+    }
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            SetCurrentPage(currentPage - 1)
+        }
+
+    }
+    const itemsPerPage = 2
+    const StartIndex = (currentPage -1) * itemsPerPage;
+    const endIndex = StartIndex + itemsPerPage
+    const itmesToDisplay = Data.slice(StartIndex,endIndex)
     return (
         <>
             <h1 className="text-center font-extrabold text-2xl">Existing Patient's History</h1>
             <div className="flex gap-2 justify-center m-3">
-                <button className="border px-3 py-2 bg-red-700 text-white rounded-md">Prev</button>
-                <button className="border px-3 py-2 bg-yellow-700 text-white rounded-md">Next</button>
+                <button onClick={handlePrevPage} className="border px-3 py-2 bg-red-700 text-white rounded-md">Prev</button>
+                <button onClick={handleNextPage} className="border px-3 py-2 bg-yellow-700 text-white rounded-md">Next</button>
 
             </div>
+            {
+                itmesToDisplay && itmesToDisplay.length > 0 ? itmesToDisplay.map((el,i)=>{
+                    return <li key={i}>{el.name}</li>
+                }):<></>
+            }
+            {
+
+            }
 
 
             <div className="flex items-center flex-col w-full h-min">
