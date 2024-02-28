@@ -25,6 +25,19 @@ const AllDetails = async (req, res) => {
         res.status(400).json({ message: "Error in getting data" })
     }
 }
+const GetItmesById = async(req,res)=>{
+    const {id} = req.params;
+    try{
+        const response = await users.findOne({_id:id})
+        console.log(response)
+        res.status(200).json(response)
+
+    }catch(e){
+        console.log(e)
+        res.status(400).json({message:"Error in fetching data using id"})
+    }
+
+}
 const GetDetailsFromData = async (req, res) => {
     const { id } = req.params;
     try {
@@ -68,7 +81,7 @@ const article = async (req, res) => {
 const editarticle = async (req, res) => {
     const { id } = req.params
     try {
-        const editUser = await users.findByIdAndUpdate({ _id: id }, req.body);
+        const editUser = await users.findByIdAndUpdate({ patient_id: patient_id }, req.body);
         const edited = await users.findOne({ _id: id })
         console.log(edited)
         res.status(200).json(editUser)
@@ -103,5 +116,6 @@ module.exports = {
     article,
     editarticle,
     deleteArticle,
-    AllDetails, GetDetailsFromData
+    AllDetails, GetDetailsFromData,
+    GetItmesById
 }
