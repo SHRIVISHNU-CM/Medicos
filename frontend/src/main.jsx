@@ -9,35 +9,12 @@ import PatientArticle from './Components/PatientArticle.jsx'
 import Search from './Components/Search.jsx'
 import Edit from './Components/Edit.jsx'
 
-
-
-// const router = createBrowserRouter([
-//   {
-//     path:'/',
-//     element:<Layout/>,
-//     children:[
-//       {
-//         path:"",
-//         element:<Home/>,
-
-//       },{
-//         path:"search",
-//         element:<Search/>
-//       },
-//       {
-//         path:"article",
-//         element:<PatientArticle/>
-//       }
-//     ]
-//   }
-// ])
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
       <Route path="" element={<Home />} />
       <Route path='search' element={<Search/>}/>
-        
-      <Route path='edit' element={<Edit/>}/>
+      <Route path='edit/:id' element={<Edit/>}/>
       <Route path='article' element={<PatientArticle/>}/>
     </Route>
   )
