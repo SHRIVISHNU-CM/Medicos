@@ -81,7 +81,7 @@ const article = async (req, res) => {
 const editarticle = async (req, res) => {
     const { id } = req.params
     try {
-        const editUser = await users.findByIdAndUpdate({ patient_id: patient_id }, req.body);
+        const editUser = await users.findByIdAndUpdate({ _id:id }, req.body);
         const edited = await users.findOne({ _id: id })
         console.log(edited)
         res.status(200).json(editUser)
