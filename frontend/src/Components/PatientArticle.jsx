@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios"
-import { useEffect } from "react";
+import {  useNavigate } from "react-router-dom";
 function PatientArticle() {
+   const Navigate = useNavigate()
    const [name, SetName] = useState("")
    const [patient_id, SetPatient_id] = useState("")
    const [history, SetCase] = useState("")
@@ -22,6 +23,7 @@ function PatientArticle() {
    const handleSubmit = async(e)=>{
       e.preventDefault()
       handleCreate()
+      Navigate('/search')
    }
 
    return (
