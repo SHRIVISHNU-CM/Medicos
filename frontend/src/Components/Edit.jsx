@@ -51,6 +51,7 @@ function Edit() {
   const HandleDrop = () => {
     axios.delete(DROPAPI)
       .then((res) => {
+        toast.warn(`Successfully deleted ID ${values.patient_id}`)
         navigate('/')
         console.log("deleted")
       })
