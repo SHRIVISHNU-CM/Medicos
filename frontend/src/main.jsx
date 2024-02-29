@@ -9,6 +9,7 @@ import Home from './Components/Home.jsx'
 import PatientArticle from './Components/PatientArticle.jsx'
 import Search from './Components/Search.jsx'
 import Edit from './Components/Edit.jsx'
+import NameSearch from './Components/Filter/NameSearch.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,6 +18,7 @@ const router = createBrowserRouter(
       <Route path='search' element={<Search />} />
       <Route path='edit/:id' element={<Edit />} />
       <Route path='article' element={<PatientArticle />} />
+      <Route path="filter" element={<NameSearch/>}/>
     </Route>
   )
 )
