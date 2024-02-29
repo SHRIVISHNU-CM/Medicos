@@ -5,6 +5,7 @@ import axios from "axios";
 function Search() {
     const [Data, SetData] = useState("")
     const [SearchData, SetSearchData] = useState(null)
+    const [year, setyear] = useState("")
     const [idData, setidData] = useState("")
     const URI = `http://localhost:3001/Medico/${Data}`;
 
@@ -15,13 +16,13 @@ function Search() {
             axios.get(URI).then((res) => {
                 setidData(res.data._id)
                 SetSearchData(res.data)
-                setFormData(res.data)
-                console.log(res.data._id)
+                setyear((new Date().getFullYear())-(new Date(res.data.age).getFullYear()))
             })
         } catch (error) {
             console.error("Error occurred:", error);
         }
     };
+
 
     useEffect(() => {
         // Only fetch data if Data is not empty
@@ -29,6 +30,7 @@ function Search() {
             handleSearch();
         }
     }, []);
+
 
 
     return (
@@ -68,6 +70,21 @@ function Search() {
                                 <div className="border border-b-blue-600 p-1 my-1">
                                     <h1>Location:</h1>
                                     <p>{SearchData.location}</p>
+
+                                </div>
+                                <div className="border border-b-blue-600 p-1 w-[384px]  h-min my-1">
+                                    <h1>Age:</h1>
+                                    <p>{year}</p>
+
+                                </div>
+                                <div className="border border-b-blue-600 p-1 w-[384px]  h-min my-1">
+                                    <h1>Address:</h1>
+                                    <p>{SearchData.address}</p>
+
+                                </div>
+                                <div className="border border-b-blue-600 p-1 w-[384px]  h-min my-1">
+                                    <h1>Gender:</h1>
+                                    <p>{SearchData.gender}</p>
 
                                 </div>
                                 <div className="border border-b-blue-600 p-1 w-[384px]  h-min my-1">
