@@ -12,7 +12,10 @@ function Edit() {
     name: "",
     phoneno: "",
     history: "",
-    patient_id: ""
+    patient_id: "",
+    age: "",
+    gender: "",
+    address: ""
   })
   const FetchById = `http://localhost:3001/Medico/byid/${id}`;
   const UPDATEAPI = `http://localhost:3001/Medico/editarticle/${id}`
@@ -27,7 +30,10 @@ function Edit() {
           history: res.data.history,
           patient_id: res.data.patient_id,
           location: res.data.location,
-          medicine_given: res.data.medicine_given
+          medicine_given: res.data.medicine_given,
+          age: res.data.age,
+          gender: res.data.gender,
+          address: res.data.address
         })
         console.log(res)
       })
@@ -50,10 +56,10 @@ function Edit() {
   }
   return (
     <>
-    <button className='bg-red-500 border px-4 py-2 rounded-md text-white flex items-center gap-1'
+      <button className='bg-red-500 border px-4 py-2 rounded-md text-white flex items-center gap-1'
         onClick={HandleDrop}>
         Drop
-        <MdDeleteForever/>
+        <MdDeleteForever />
       </button>
       <main className='flex justify-center my-20'>
         <form onSubmit={HandleUpdate} className='border p-1 w-[400px] shadow-lg'>
@@ -93,8 +99,36 @@ function Edit() {
             value={values.location}
             onChange={e => SetValues({ ...values, location: e.target.value })}
           />
-
-
+          <div className='my-1'>
+            <label className="font-semibold text-xl">Age:</label>
+          </div>
+          <input
+            className='border border-b-red-600 outline-none w-full px-1 py-3'
+            type="date"
+            name="age"
+            value={values.age}
+            onChange={e => SetValues({ ...values, age: e.target.value })}
+          />
+          <div className='my-1'>
+            <label className="font-semibold text-xl">Gender:</label>
+          </div>
+          <input
+            className='border border-b-red-600 outline-none w-full px-1 py-3'
+            type="text"
+            name="age"
+            value={values.gender}
+            onChange={e => SetValues({ ...values, gender: e.target.value })}
+          />
+          <div className='my-1'>
+            <label className="font-semibold text-xl">Address:</label>
+          </div>
+          <input
+            className='border border-b-red-600 outline-none w-full px-1 py-3'
+            type="text"
+            name="age"
+            value={values.address}
+            onChange={e => SetValues({ ...values, address: e.target.value })}
+          />
           <h1 className="font-semibold text-xl">Medicine Given:</h1>
           <div className='my-1'>
             <textarea
@@ -120,16 +154,9 @@ function Edit() {
               Update
               <FiEdit />
             </button>
-
-
           </div>
-
-
         </form>
       </main>
-
-      
-
     </>
   )
 }
