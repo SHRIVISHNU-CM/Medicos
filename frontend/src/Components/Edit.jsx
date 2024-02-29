@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteForever } from "react-icons/md";
-
+import {toast} from "react-toastify"
 function Edit() {
   const { id } = useParams();
   const navigate = useNavigate()
@@ -43,6 +43,7 @@ function Edit() {
     e.preventDefault();
     axios.put(UPDATEAPI, values)
       .then((res) => {
+        toast.info("Successfully Updated")
         navigate('/search')
         console.log(res.data)
       })
