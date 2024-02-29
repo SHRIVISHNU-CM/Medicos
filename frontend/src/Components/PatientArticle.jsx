@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { MdCreateNewFolder } from "react-icons/md";
+import {toast} from "react-toastify"
 function PatientArticle() {
    const Navigate = useNavigate()
    const [name, SetName] = useState("")
@@ -27,6 +28,8 @@ function PatientArticle() {
    const handleSubmit = async (e) => {
       e.preventDefault()
       handleCreate()
+      toast.success(`Created id ${patient_id}`)
+
       Navigate('/search')
    }
 
