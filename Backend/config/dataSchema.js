@@ -21,11 +21,23 @@ const userSchema = new Schema({
         type:String
     },
     phoneno:{
-        type:Number
+        type:Number,
+        unique:true
     },
     location:{
         type:String
+    },
+    gender:{
+        type:String
+    },
+    age:{
+        type:Number
+    },
+    address:{
+        type:String
+
     }
+
 
 },{timestamps:true})
 
