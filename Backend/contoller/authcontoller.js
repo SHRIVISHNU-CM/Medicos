@@ -54,7 +54,7 @@ const GetDetailsFromData = async (req, res) => {
 }
 
 const article = async (req, res) => {
-    const { name, patient_id, history, medicine_given, location, phoneno } = req.body
+    const { name, patient_id, history, medicine_given, location, phoneno,age,address,gender } = req.body
     try {
         if (!name || !patient_id) {
             res.status(400).json({
@@ -64,7 +64,7 @@ const article = async (req, res) => {
         }
 
         const newUser = await users.create({
-            name, patient_id, history, medicine_given, location, phoneno
+            name, patient_id, history, medicine_given, location, phoneno,age,address,gender
         });
         console.log(newUser)
         res.status(200).json(newUser)
