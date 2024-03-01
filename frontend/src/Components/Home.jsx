@@ -3,13 +3,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { IoIosCall } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa";
 import axios from "axios";
+import{Link} from "react-router-dom"
 function Home() {
     const [Data, SetData] = useState([]);
     const [currentPage, SetCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const URI = "http://localhost:3001/Medico/"
     const HandleAPI = () => {
-        axios.get(URI)
+        axios.get(URI) 
             .then((res) => {
                 console.log(res.data)
                 SetData(res.data)
@@ -70,13 +71,11 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="flex justify-center items-center">
-                                    <button className="border px-3 py-2 rounded-lg bg-green-600 text-white">View </button><FaArrowRight />
+                                <Link
+                                    to={`/edit/${el._id}`}
+                                 className="border px-3 py-2 rounded-lg bg-green-600 text-white">View</Link><FaArrowRight />
+                                    
                                 </div>
-
-
-
-
-
                             </div>
 
                         )
