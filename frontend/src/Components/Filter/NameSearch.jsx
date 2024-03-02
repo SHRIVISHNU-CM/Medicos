@@ -18,9 +18,9 @@ function NameSearch() {
 
   return (
     <>
-      <div>
+      <div className='text-center'>
         <input
-          className='outline-blue-500 border-green-700 border w-[300px] p-1 my-6 rounded-md'
+          className='outline-blue-500 border w-[300px] p-1 my-6 rounded-md'
           placeholder='Search Name Here..'
           type='text'
           onChange={
