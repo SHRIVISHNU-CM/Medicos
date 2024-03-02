@@ -74,12 +74,12 @@ function Edit() {
             className='border border-b-red-600 outline-none w-full  px-1 py-3'
           />
           <div className='my-1'>
-            <label className="font-semibold text-xl">Mobile Number:</label>
+            <label className="font-semibold text-xl ">Mobile Number:</label>
           </div>
           <input type='Number' name='phoneno'
             value={values.phoneno}
             onChange={e => SetValues({ ...values, phoneno: e.target.value })}
-            className='border border-b-red-600 w-full outline-none  px-1 py-3'
+            className='border border-b-red-600 w-full outline-none  px-1 py-3 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none'
           />
           <div className='my-1'>
             <label className="font-semibold text-xl">Patient ID:</label>
