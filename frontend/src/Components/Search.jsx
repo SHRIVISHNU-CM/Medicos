@@ -16,7 +16,7 @@ function Search() {
             axios.get(URI).then((res) => {
                 setidData(res.data._id)
                 SetSearchData(res.data)
-                setyear((new Date().getFullYear())-(new Date(res.data.age).getFullYear()))
+                setyear((new Date().getFullYear()) - (new Date(res.data.age).getFullYear()))
             })
         } catch (error) {
             console.error("Error occurred:", error);
@@ -53,8 +53,11 @@ function Search() {
 
             </div>
             {
-                SearchData !== null && (
+                SearchData === null ? (
                     <>
+                        <h1 className="text-center text-slate-700 font-semibold text-xl">Enter Correct Patient ID</h1>
+
+                    </>) : (<>
                         <div className="w-full h-min p-1 flex justify-center">
                             <header className="px-2 py-1 w-[400px] h-min">
                                 <div className="border border-b-blue-600 p-1 my-1">
@@ -104,7 +107,6 @@ function Search() {
                         <Link to={`/edit/${idData}`} className="border px-4 py-2 bg-green-700 text-white m-1 w-[200px] block mx-auto text-center rounded-md">
                             Edit
                         </Link>
-
                     </>)
             }
         </>
