@@ -1,17 +1,53 @@
 const users = require("../config/dataSchema")
-const signin = (req, res) => {
+const userModel = require("../config/UserModel")
+const jwt = require('jsonwebtoken')
+const secret = "vishnu"
+const signin =async (req, res) => {
     const { name, password } = req.body
-    if (!name || !password) {
-        res.status(400).json({
-            message: "Name and password are required"
-        })
-    }
-    if (name === "SHRIVIDYACM" && password === "hello1") {
+    try{
+        const result = await userModel.create({
+            name,password
+        })  
+        console.log(result)
         res.status(200).json({
-            message: "user loggined"
+            message:"Successfully signed"
+        })
+    }catch(e){
+        console.log(e.message)
+        res.status(400).json({
+            message:"Error in login"
         })
     }
-    res.send("hi")
+    
+}
+const signup = async(req,res)=>{
+    const {name,password} = req.body
+    try{
+        const result = await userModel.findOne({name:name})
+        if(name !== result.name){
+            res.status(400).json({
+                message:"Check Name"
+            })
+        }
+        if(password !== result.password){
+            res.status(400).json({
+                message:"Check password"
+            })
+        }
+        const token = jwt.sign({id: result._id},secret,{
+            expiresIn:120
+        })
+        res.status(200).json({
+            message:"Ho lo",
+            access_token:token
+        })
+
+    }catch(e){
+        console.log(e)
+        res.status(400).json({
+            messsage:"Error in sigin"
+        })
+    }
 }
 const AllDetails = async (req, res) => {
     try {
@@ -113,6 +149,7 @@ const deleteArticle = async (req, res) => {
 
 module.exports = {
     signin,
+    signup,
     article,
     editarticle,
     deleteArticle,
