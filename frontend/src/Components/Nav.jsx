@@ -2,13 +2,18 @@ import { NavLink, Link } from "react-router-dom"
 function Navbar() {
     return (
         <>
-            <navbar className="w-full flex justify-center">
+            <navbar className="w-full flex justify-around py-2">
                 <Link className="font-bold text-green-800 text-lg"
-                 to="/">Shrividya's HomeoCare</Link>
+                 to="/home">Shrividya's HomeoCare</Link>
+                 <div>
+                 <Link to='/' className="border px-2 py-1 bg-red-600 text-white text-md rounded-md">Login</Link>
+                 <Link to='/logout' className="border px-2 py-1 bg-yellow-600 text-white text-md rounded-md">Logout</Link>
+                 </div>
+                 
             </navbar >
 
             <div className="flex gap-2 justify-around shadow-lg w-full">
-                <NavLink to="/"
+                <NavLink to="/home"
                     className={({ isActive }) => `${isActive ? "text-orange-500" : "text-gray-500"}`
                     }>
                     Home
