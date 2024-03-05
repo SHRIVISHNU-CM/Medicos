@@ -7,6 +7,9 @@ const user_model =new Schema({
         required: [true,"Enter username"],
         trim: true
     },
+    userid:{
+        type:Number
+    },
     password: {
         type: String,
         required:[true,"Enter password"]
