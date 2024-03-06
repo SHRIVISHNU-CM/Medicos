@@ -1,8 +1,7 @@
 const users = require("../config/dataSchema")
 const userModel = require("../config/UserModel")
 const jwt = require('jsonwebtoken')
-const secret = "vishnu"
-const signin =async (req, res) => {
+const signup =async (req, res) => {
     const { name, password } = req.body
     try{
         const result = await userModel.create({
@@ -20,7 +19,7 @@ const signin =async (req, res) => {
     }
     
 }
-const signup = async(req,res)=>{
+const signin = async(req,res)=>{
     const {name,password} = req.body
     try{
         const result = await userModel.findOne({name:name})
@@ -34,18 +33,41 @@ const signup = async(req,res)=>{
                 message:"Check password"
             })
         }
-        const token = jwt.sign({id: result._id},secret,{
-            expiresIn:120
+        const accesstoken = jwt.sign({id: result._id},process.env.SECRET,{
+            expiresIn:'2h'
+        })
+
+        res.cookie('accesstoken',accesstoken,{
+            maxAge:60000,
+            httpOnly:true,
+            secure:true,
+            sameSite:'strict'
+            
         })
         res.status(200).json({
             message:"Ho lo",
-            access_token:token
+            access_token:accesstoken,
         })
 
     }catch(e){
         console.log(e)
         res.status(400).json({
             messsage:"Error in sigin"
+        })
+    }
+}
+const logout = (req,res)=>{
+    try{
+        res.cookie('accesstoken',null,{
+            expiresIn:new Date()
+        })
+        res.status(200).json({
+            message:"Success logout"
+        })
+    }catch(e){
+        console.log(e)
+        res.status(400).json({
+            message:"Error in logout"
         })
     }
 }
@@ -149,6 +171,7 @@ const deleteArticle = async (req, res) => {
 
 module.exports = {
     signin,
+    logout,
     signup,
     article,
     editarticle,
