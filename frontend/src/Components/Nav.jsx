@@ -1,5 +1,9 @@
 import { NavLink, Link } from "react-router-dom"
+import axios from "axios"
 function Navbar() {
+    const HandleLogout=()=>{
+        axios.get('http://localhost:3001/Medico/logout')
+    }
     return (
         <>
             <navbar className="w-full flex justify-around py-2">
@@ -7,7 +11,7 @@ function Navbar() {
                  to="/home">Shrividya's HomeoCare</Link>
                  <div>
                  <Link to='/' className="border px-2 py-1 bg-red-600 text-white text-md rounded-md">Login</Link>
-                 <Link to='/logout' className="border px-2 py-1 bg-yellow-600 text-white text-md rounded-md">Logout</Link>
+                 <Link to='/logout' className="border px-2 py-1 bg-yellow-600 text-white text-md rounded-md" onClick={HandleLogout}>Logout</Link>
                  </div>
                  
             </navbar >
