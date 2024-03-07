@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import axios from 'axios'
+import { toast } from "react-toastify"
 function Login() {
   const API = 'http://localhost:3001/Medico/signin'
   const navigate = useNavigate()
@@ -14,6 +15,7 @@ function Login() {
     e.preventDefault()
     axios.post(API, { name, password })
       .then((res) => {
+        toast.success('Shrividya loggedIn')
         console.log('hii')
         navigate('/home')
       })
