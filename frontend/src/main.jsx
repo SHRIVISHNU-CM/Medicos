@@ -10,22 +10,29 @@ import PatientArticle from './Components/PatientArticle.jsx'
 import Search from './Components/Search.jsx'
 import Edit from './Components/Edit.jsx'
 import Loading from './Components/Loading.jsx';
-import Error from './Components/Error.jsx';
 import Login from './Components/Login/Login.jsx';
 import Logout from './Components/Logout/Logout.jsx';
+import { ErrorBoundary } from "react-error-boundary"
+import BoundaryError from './Components/ErrorBoundary/ErrBoundary.jsx';
 const NameFilter = lazy(() => import('./Components/Filter/NameSearch.jsx'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
       <Route path="" element={<Login />} />
-      <Route path='logout' element={<Logout />}/>
-      <Route path="home" element={<Home/>}/>
-      <Route path='search' element={<Search />} />
+      <Route path='logout' element={<Logout />} />
+      <Route path="home" element={<ErrorBoundary fallback={<BoundaryError />}><Home /></ErrorBoundary>} />
+      <Route path='search' element={<ErrorBoundary fallback={<BoundaryError />}><Search /></ErrorBoundary>} />
       <Route path='edit/:id' element={<Edit />} />
-      <Route path='article' element={<PatientArticle />} />
-        <Route path="filter" element={<React.Suspense fallback={<Loading/>}><NameFilter /></React.Suspense> } />
-      <Route path='*' element={<Error/>}/>
+      <Route path='article' element={<ErrorBoundary fallback={<BoundaryError/>}><PatientArticle /></ErrorBoundary>} />
+      <Route path="filter" element={
+        <React.Suspense fallback={<Loading />}>
+          <ErrorBoundary fallback={<BoundaryError/>}>
+            <NameFilter />
+          </ErrorBoundary>
+
+        </React.Suspense>} />
+      <Route path='*' element={<Error />} />
     </Route>
   )
 )
@@ -44,7 +51,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       draggable
       pauseOnHover
       theme="light"
-      
+
     />
   </React.StrictMode>,
 )
