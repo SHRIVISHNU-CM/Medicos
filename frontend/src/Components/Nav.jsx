@@ -1,8 +1,12 @@
 import { NavLink, Link } from "react-router-dom"
 import axios from "axios"
+import { toast } from "react-toastify"
 function Navbar() {
     const HandleLogout=()=>{
         axios.get('http://localhost:3001/Medico/logout')
+        .then(()=>{
+            toast.success('Shrividya logged Out')
+        })
     }
     return (
         <>
