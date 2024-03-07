@@ -34,11 +34,10 @@ const signin = async(req,res)=>{
             })
         }
         const accesstoken = jwt.sign({id: result._id},process.env.SECRET,{
-            expiresIn:'2h'
+            expiresIn:'24h'
         })
-
         res.cookie('accesstoken',accesstoken,{
-            maxAge:60000,
+            maxAge:24 * 60 * 60 * 1000,
             httpOnly:true,
             secure:true,
             sameSite:'strict'
