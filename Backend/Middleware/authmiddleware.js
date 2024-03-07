@@ -1,7 +1,4 @@
 const jwt = require('jsonwebtoken');
-const secret = "vishnu"
-const user_model = require('../config/UserModel')
-
 const verifySignin = async (req, res, next) => {
     try {
         if (!req.body.name) {
@@ -23,11 +20,13 @@ const verifySignin = async (req, res, next) => {
 const verifytoken = (req, res, next) => {
     const token = req.cookies.accesstoken
     if (!token) {
+
     res.status(400).json({
             success: false,
             messsage: "invalid credentials"
         })
-    } else {
+    }
+     else {
         jwt.verify(token,process.env.SECRET,(err,decoded)=>{
             if(err){
                 res.json({
@@ -41,8 +40,6 @@ const verifytoken = (req, res, next) => {
     }
 
 }
-
-
 module.exports = {
     verifySignin,
     verifytoken,
