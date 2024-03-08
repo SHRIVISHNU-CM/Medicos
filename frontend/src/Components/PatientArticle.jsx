@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import { MdCreateNewFolder } from "react-icons/md";
@@ -15,25 +15,27 @@ function PatientArticle() {
    const [gender, setGender] = useState("")
    const [address, setAddress] = useState("")
    const URI = "http://localhost:3001/Medico/newarticle";
-   const handleCreate = async () => {
-      try {
-         const result = await axios.post(URI, { name, patient_id, history, medicine_given, phoneno, location, age, gender, address })
-         console.log(result)
 
+   const handleCreate = () => {
+      try {
+         axios.post(URI, { name, patient_id, history, medicine_given, phoneno, location, age, gender, address })
       } catch (e) {
          console.log(e.message)
       }
 
    }
+
    const handleSubmit = async (e) => {
       e.preventDefault()
-      if (!name || !patient_id || !history || !medicine_given || !phoneno || !location || !age || !gender || !address) {
-         toast.warn("All Fields are required")
+      if (!name||!patient_id||!phoneno) {
+         toast.warn("Enter name ,ID and Mobile number")
       } else {
          handleCreate()
          toast.success(`Created id ${patient_id}`)
-         Navigate('/search')
+         Navigate('/patientid')
       }
+
+
 
    }
 
