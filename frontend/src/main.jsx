@@ -14,7 +14,6 @@ import Login from './Components/Login/Login.jsx';
 import Logout from './Components/Logout/Logout.jsx';
 import { ErrorBoundary } from "react-error-boundary"
 import BoundaryError from './Components/ErrorBoundary/ErrBoundary.jsx';
-// import IDfun from ;
 const NameFilter = lazy(() => import('./Components/Filter/NameSearch.jsx'))
 const IDfun = lazy(() => import('./Components/Filter/ID.jsx'))
 

@@ -40,7 +40,7 @@ function Search() {
                 <input
                     value={Data}
                     onChange={(e) => {
-                        console.log(e.target.value)
+              
                         SetData(e.target.value)
                     }}
                     className='outline-none border-blue-600 p-2 w-[300px] border rounded-md'

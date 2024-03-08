@@ -35,7 +35,6 @@ function Edit() {
           gender: res.data.gender,
           address: res.data.address
         })
-        console.log(res)
       })
   }, [])
 
@@ -45,7 +44,6 @@ function Edit() {
       .then((res) => {
         toast.info("Successfully Updated")
         navigate('/search')
-        console.log(res.data)
       })
   }
   const HandleDrop = () => {
@@ -53,7 +51,6 @@ function Edit() {
       .then((res) => {
         toast.warn(`Successfully deleted ID ${values.patient_id}`)
         navigate('/')
-        console.log("deleted")
       })
   }
   return (

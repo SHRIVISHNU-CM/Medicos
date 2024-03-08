@@ -48,7 +48,7 @@ function PatientArticle() {
                   className="p-2 border outline-blue-500 rounded-md w-62 w-full"
                   value={name}
                   onChange={(e) => {
-                     console.log(e.target.value)
+                     
                      SetName(e.target.value)
                   }}
                   type="text" />
@@ -56,7 +56,7 @@ function PatientArticle() {
                <input
                   value={patient_id}
                   onChange={(e) => {
-                     console.log(e.target.value)
+                    
                      SetPatient_id(e.target.value)
                   }}
                   className="p-2  border outline-blue-500 rounded-md w-62"
@@ -71,7 +71,7 @@ function PatientArticle() {
                <input
                   value={phoneno}
                   onChange={(e) => {
-                     console.log(e.target.value)
+             
                      SetPhone(e.target.value)
                   }}
                   className="p-2 w-full border outline-blue-500 rounded-md w-62 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -80,7 +80,7 @@ function PatientArticle() {
                <input
                   value={location}
                   onChange={(e) => {
-                     console.log(e.target.value)
+
                      SetLocation(e.target.value)
                   }}
                   className="p-2 w-full border outline-blue-500 rounded-md w-62"
@@ -92,7 +92,7 @@ function PatientArticle() {
                   value={age}
                   onChange={(e) => {
                      setAge(e.target.value)
-                     console.log(e.target.value)
+
                   }}
                />
                <div><label className=" font-semibold text-lg">Gender:</label></div>
@@ -102,7 +102,7 @@ function PatientArticle() {
                   value={gender}
                   onChange={(e) => {
                      setGender(e.target.value)
-                     console.log(e.target.value)
+ 
                   }} />
                <div><label className="font-semibold text-lg">Residential Address</label></div>
                <textarea
@@ -110,14 +110,14 @@ function PatientArticle() {
                   value={address}
                   onChange={(e) => {
                      setAddress(e.target.value)
-                     console.log(e.target.value)
+         
                   }}
                />
                <div><label className=" font-semibold text-lg">Patient's case</label></div>
                <textarea className="border w-full rounded-md p-1 outline-blue-500"
                   value={history}
                   onChange={(e) => {
-                     console.log(e.target.value)
+         
                      SetCase(e.target.value)
                   }}
                   readOnly={false} />
@@ -125,7 +125,7 @@ function PatientArticle() {
                <textarea className="border w-full rounded-md p-1 outline-blue-500"
                   value={medicine_given}
                   onChange={(e) => {
-                     console.log(e.target.value)
+      
                      SetMedicine(e.target.value)
                   }}
                   readOnly={false} />

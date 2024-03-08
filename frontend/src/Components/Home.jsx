@@ -12,10 +12,9 @@ function Home() {
     const HandleAPI = () => {
         axios.get(URI) 
             .then((res) => {
-                console.log(res.data)
                 SetData(res.data)
                 setTotalPages(Math.ceil((res.data.length)))
-                console.log(Math.ceil((res.data.length)))
+
             })
 
     }
