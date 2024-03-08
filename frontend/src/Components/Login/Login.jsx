@@ -16,7 +16,6 @@ function Login() {
     axios.post(API, { name, password })
       .then((res) => {
         toast.success('Shrividya loggedIn')
-        console.log('hii')
         navigate('/home')
       })
 
