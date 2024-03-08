@@ -19,8 +19,8 @@ function IDfun() {
             {
                 Data.map((el, i) => {
                     return (
-                        <div className='flex items-center flex-col'>
-                            <Link key={i} to={`/edit/${el._id}`}
+                        <div className='flex items-center flex-col' key={i}>
+                            <Link  to={`/edit/${el._id}`}
                             className='border rounded-md bg-orange-700 py-2  w-[100px] text-center text-white'
                             >{el.patient_id}</Link>
                         </div>
