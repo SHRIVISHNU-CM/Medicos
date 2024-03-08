@@ -1,4 +1,4 @@
-import React, { lazy } from 'react'
+import React, { lazy, Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,9 @@ import Login from './Components/Login/Login.jsx';
 import Logout from './Components/Logout/Logout.jsx';
 import { ErrorBoundary } from "react-error-boundary"
 import BoundaryError from './Components/ErrorBoundary/ErrBoundary.jsx';
+// import IDfun from ;
 const NameFilter = lazy(() => import('./Components/Filter/NameSearch.jsx'))
+const IDfun = lazy(() => import('./Components/Filter/ID.jsx'))
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,10 +26,17 @@ const router = createBrowserRouter(
       <Route path="home" element={<ErrorBoundary fallback={<BoundaryError />}><Home /></ErrorBoundary>} />
       <Route path='search' element={<ErrorBoundary fallback={<BoundaryError />}><Search /></ErrorBoundary>} />
       <Route path='edit/:id' element={<Edit />} />
-      <Route path='article' element={<ErrorBoundary fallback={<BoundaryError/>}><PatientArticle /></ErrorBoundary>} />
+      <Route path='article' element={<ErrorBoundary fallback={<BoundaryError />}><PatientArticle /></ErrorBoundary>} />
+      <Route path='patientid' element={
+        <React.Suspense fallback={<Loading/>}>
+          <ErrorBoundary>
+            <IDfun />
+          </ErrorBoundary>
+        </React.Suspense>
+      } />
       <Route path="filter" element={
         <React.Suspense fallback={<Loading />}>
-          <ErrorBoundary fallback={<BoundaryError/>}>
+          <ErrorBoundary fallback={<BoundaryError />}>
             <NameFilter />
           </ErrorBoundary>
 
