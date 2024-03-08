@@ -20,7 +20,7 @@ function NameSearch() {
     <>
       <div className='text-center'>
         <input
-          className='outline-blue-500 border w-[300px] p-1 my-6 rounded-md'
+          className='outline-blue-500 border w-[300px] my-6 rounded-md px-4 py-2 mx-1'
           placeholder='Search Name Here..'
           type='text'
           onChange={
@@ -29,6 +29,7 @@ function NameSearch() {
             }
           }
         />
+        <span>OR</span> <Link to='/patientid' className='border bg-green-600 text-white rounded-md px-4 py-2'>GO to ID's</Link>
       </div>
       <div className='flex flex-col items-center'>
         {
