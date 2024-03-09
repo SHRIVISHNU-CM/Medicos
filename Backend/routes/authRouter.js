@@ -1,5 +1,5 @@
 const { signin,signup,logout,article ,editarticle, deleteArticle, AllDetails,GetDetailsFromData,GetItmesById} = require("../contoller/authcontoller")
-const {verifySignin,verifytoken,renewtoken} = require('../MIddleware/authmiddleware')
+const {verifySignin,verifytoken} = require('../middleware/authmiddleware')
 const express = require('express')
 const router = express.Router()
 
