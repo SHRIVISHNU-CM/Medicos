@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(cookieparser())
 app.use(cors(
     {
+        origin:" https://medicos-frontend.vercel.app",
         credentials:true
     }
 ))
