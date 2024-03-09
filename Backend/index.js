@@ -13,6 +13,7 @@ app.use(cookieparser())
 app.use(cors(
     {
         origin:['https://medicos-frontend.vercel.app'],
+        methods:["GET","POST","PUT","DELETE"],
         credentials:true
     }
 ))
