@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 function NameSearch() {
   const [Data, SetData] = useState("")
   const [records, SetRecords] = useState([])
-  const API = "http://localhost:3001/Medico/"
+  const API = "https://medicos-989d.vercel.app/"
   useEffect(() => {
     axios.get(API)
       .then((res) => {

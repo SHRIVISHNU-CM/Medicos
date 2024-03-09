@@ -7,7 +7,7 @@ function Search() {
     const [SearchData, SetSearchData] = useState(null)
     const [year, setyear] = useState("")
     const [idData, setidData] = useState("")
-    const URI = `http://localhost:3001/Medico/${Data}`;
+    const URI = `https://medicos-989d.vercel.app/${Data}`;
 
 
     const handleSearch = () => {

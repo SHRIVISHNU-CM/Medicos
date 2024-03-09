@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 function IDfun() {
     const [Data, SetData] = useState([])
-    const API = "http://localhost:3001/Medico/"
+    const API = "https://medicos-989d.vercel.app/"
     useEffect(() => {
         axios.get(API)
             .then((res) => {
