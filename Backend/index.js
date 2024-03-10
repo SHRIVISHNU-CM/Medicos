@@ -10,7 +10,11 @@ const PORT = process.env.PORT||3000;
 
 app.use(express.json());
 app.use(cookieparser())
-app.use(cors())
+app.use(cors(
+    {
+        credentials:true
+    }
+))
 app.use(express.urlencoded({extended:false}))
 app.use('/Medico', Authrouter)
 
