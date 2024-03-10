@@ -17,9 +17,9 @@ function Edit() {
     gender: "",
     address: ""
   })
-  const FetchById = `https://medicos-4xbt8l9m6-shrivishnu-cms-projects.vercel.app/${id}`;
-  const UPDATEAPI = `https://medicos-4xbt8l9m6-shrivishnu-cms-projects.vercel.app/${id}`
-  const DROPAPI = `https://medicos-4xbt8l9m6-shrivishnu-cms-projects.vercel.app/${id}`
+  const FetchById = `https://medicos-silk.vercel.app/${id}`;
+  const UPDATEAPI = `https://medicos-silk.vercel.app/${id}`
+  const DROPAPI = `https://medicos-silk.vercel.app/${id}`
   useEffect(() => {
     axios.get(FetchById)
       .then((res) => {

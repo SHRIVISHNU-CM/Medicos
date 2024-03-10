@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { toast } from "react-toastify"
 function Login() {
-  const API = 'https://medicos-4xbt8l9m6-shrivishnu-cms-projects.vercel.app/signin'
+  const API = `https://medicos-silk.vercel.app/signin`
   const navigate = useNavigate()
 
   const [name, SetName] = useState('')
