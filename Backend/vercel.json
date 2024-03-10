@@ -6,10 +6,21 @@
       "src": "/(.*)",
       "dest": "./index.js",
       
-      "headers": {
-        "Access-Control-Allow-Origin": "*"
-
-      }
+     
+    "headers": [
+      {
+        "source": "/(.*)",
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
+      },
+      {
+        "source": "/https://medicos-frontend.vercel.app/(.*)",
+        "headers": [
+          { "key": "Access-Control-Allow-Origin", "value": "*" }
+        ]
+      }  
+  ]
     }
   ]
 }
