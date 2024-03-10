@@ -10,7 +10,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cookieparser())
-app.use(cors())
+app.use(cors({
+    origin:"https://medicos-frontend.vercel.app",
+    credentials:true,
+    methods:["POST","PUT","DELETE","GET","PATCH","OPTIONS"]
+}
+   
+
+))
 app.use(express.urlencoded({ extended: false }))
 app.use('/Medico', Authrouter)
 
