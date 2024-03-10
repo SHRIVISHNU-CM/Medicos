@@ -10,22 +10,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cookieparser())
-const allowedorigins = [
-    "https://medicos-frontend.vercel.app",
-    "https://medicos-silk.vercel.app"
-]
-const corsoptions={
-    origin:(origin,callback)=>{
-        if(allowedorigins.indexOf(origin)!==-1||!origin){
-            callback(null,true)
-        }else{
-            callback(new Error('not allowed'))
-        }
-    },
-    credentials:true,
-    optionsSuccessStatus:200
-}
-app.use(cors(corsoptions))
+app.use(cors(
+    {
+        origin: "https://medicos-frontend.vercel.app",
+        methods: '*',
+        allowedHeaders: ['Content-Type', 'Authorization'],
+        credentials: true,
+    }
+))
 app.use(express.urlencoded({ extended: false }))
 app.use('/Medico', Authrouter)
 
