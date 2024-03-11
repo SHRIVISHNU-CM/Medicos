@@ -3,7 +3,7 @@ import axios from "axios"
 import { toast } from "react-toastify"
 function Navbar() {
     const HandleLogout = () => {
-        axios.get(`https://medicos-silk.vercel.app/Medico/logout`)
+        axios.get(`https://medicos-backend.vercel.app/Medico/logout`)
             .then(() => {
                 toast.success('Shrividya logged Out')
             })
