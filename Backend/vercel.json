@@ -1,11 +1,27 @@
 {
     "version": 2,
-    
+    "rewrites": [
+        { "source": "/(.*)", "destination": "index.js" }
+    ],
     "routes": [
     
       {
         "src": "/(.*)",
         "dest": "/"
       }
+    ],
+    "headers": [
+        {
+          "source": "/(.*)",
+          "headers": [
+            { "key": "Access-Control-Allow-Origin", "value": true }
+          ]
+        },
+        {
+          "source": "https://medicos-frontend.vercel.app/(.*)",
+          "headers": [
+            { "key": "Access-Control-Allow-Origin", "value": true }
+          ]
+        }  
     ]
 }
