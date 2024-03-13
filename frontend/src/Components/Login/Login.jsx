@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from 'axios'
 import { toast } from "react-toastify"
 function Login() {
-  const API = `https://medicos-backend.vercel.app/Medico/signin`
+  const API = `http://localhost:3001/Medico/signin`
   const navigate = useNavigate()
 
   const [name, SetName] = useState('')
@@ -15,7 +15,7 @@ function Login() {
     e.preventDefault()
     axios.post(API, { name, password })
       .then((res) => {
-        toast.success('Shrividya loggedIn')
+        toast.success('Login Successfull')
         navigate('/home')
       })
 
