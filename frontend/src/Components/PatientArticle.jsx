@@ -14,7 +14,7 @@ function PatientArticle() {
    const [age, setAge] = useState("")
    const [gender, setGender] = useState("")
    const [address, setAddress] = useState("")
-   const URI = `http://localhost:3001/Medico/newarticle`;
+   const URI = `https://medicos-backend.vercel.app/Medico/newarticle`;
 
    const handleCreate = () => {
       try {

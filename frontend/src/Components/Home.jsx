@@ -8,7 +8,7 @@ function Home() {
     const [Data, SetData] = useState([]);
     const [currentPage, SetCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
-    const URI = `http://localhost:3001/Medico/`
+    const URI = `https://medicos-backend.vercel.app/Medico/`
     const HandleAPI = () => {
         axios.get(URI) 
             .then((res) => {
