@@ -28,7 +28,7 @@ const signin = async(req,res)=>{
                 message:"Check Name"
             })
         }
-        if(password !== result.password){
+        if(!password){
             return res.status(400).json({
                 message:"Check password"
             })
@@ -42,11 +42,7 @@ const signin = async(req,res)=>{
             secure:true,
             sameSite:'strict'
             
-        })
-        return res.status(200).json({
-            message:"Ho lo",
-            access_token:accesstoken,
-        })
+        }).status(200).json(accesstoken)
 
     }catch(e){
         console.log(e)
@@ -59,8 +55,7 @@ const logout = (req,res)=>{
     try{
         return res.cookie('accesstoken',null,{
             expiresIn:new Date()
-        })
-        return res.status(200).json({
+        }).status(200).json({
             message:"Success logout"
         })
     }catch(e){
