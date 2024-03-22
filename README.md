@@ -23,7 +23,7 @@ cd Backend
 npm install
 ```
 ```
-npm run dev
+npm run start
 ```
 Change Directory to frontend using,
 ```
