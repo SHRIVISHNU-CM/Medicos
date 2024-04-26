@@ -3,18 +3,37 @@ import { FaLocationDot } from "react-icons/fa6";
 import { IoIosCall } from "react-icons/io";
 import { FaArrowRight } from "react-icons/fa";
 import axios from "axios";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Debounce from '../Debounce';
 function NameSearch() {
-  const [Data, SetData] = useState("")
+  const [Data, SetData] = useState([])
   const [records, SetRecords] = useState([])
+  const [searchItem, setSearchItem] = useState('')
   const API = `http://localhost:3001/Medico/`
-  useEffect(() => {
+
+  const fetchData = () => {
     axios.get(API)
       .then((res) => {
         SetData(res.data)
         SetRecords(res.data)
       })
+  }
+  const debouncedItem = Debounce(searchItem, 1000)
+  useEffect(() => {
+
+    fetchData()
   }, [])
+  useEffect(()=>{
+    if(debouncedItem){
+      const filteredData = Data.filter((i)=> i.name.toLowerCase().includes(debouncedItem))
+      SetRecords(filteredData)
+    }else{
+      SetRecords(Data)
+    }
+  },[debouncedItem , Data])
+  const HandleChange = (e) => {
+    setSearchItem(e.target.value.toLowerCase())
+  }
 
   return (
     <>
@@ -24,9 +43,7 @@ function NameSearch() {
           placeholder='Search Name Here..'
           type='text'
           onChange={
-            (e) => {
-              SetRecords(Data.filter(f => f.name.toLowerCase().includes(e.target.value)))
-            }
+            HandleChange
           }
         />
         <span>OR</span> <Link to='/patientid' className='border bg-green-600 text-white rounded-md px-4 py-2'>GO to ID's</Link>
